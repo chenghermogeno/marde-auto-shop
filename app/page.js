@@ -88,15 +88,19 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
-      <header className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white shadow-lg">
+      <header className="bg-gradient-to-r from-neutral-950 via-neutral-800 to-neutral-950 text-white shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
-                <Settings className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold">
-                Marde’s Auto & Heavy Equipment Repair
+              {/* <div className="w-10 h-10 rounded-full flex items-center justify-center">
+                <img
+                  src="/logo.png"
+                  alt="Marde’s Auto & Heavy Equipment Repair Logo"
+                  className="w-8 h-8 object-contain"
+                />
+              </div> */}
+              <span className="text-sm font-medium italic text-white">
+                Marde’s Truck & Auto Hydraulic Repair
               </span>
             </div>
 
@@ -274,7 +278,7 @@ export default function HomePage() {
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-                FULL RANGE HYDRAULIC
+                FULL RANGE REPAIR
                 <br />
                 SERVICES
               </h2>
@@ -700,7 +704,7 @@ export default function HomePage() {
           {/* Bottom Border */}
           <div className="border-t border-gray-700 mt-2 pt-4 text-center">
             <p className="text-gray-400">
-              © 2025 Marde's Truck & Auto Hydraulic Repair. All rights reserved.
+              © 2025 Marde’s Truck & Auto Hydraulic Repair. All rights reserved.
             </p>
           </div>
         </div>
