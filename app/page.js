@@ -233,7 +233,7 @@ export default function HomePage() {
       {/* About Us Section */}
       <section
         id="about-detailed"
-        className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-white"
+        className="py-20 bg-gradient-to-br from-neutral-950 via-neutral-800 to-neutral-950 text-white"
       >
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -273,7 +273,7 @@ export default function HomePage() {
       </section>
 
       {/* Full Range Services */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
+      <section className="py-20 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 text-white">
         <div className="container mx-auto px-8 md:px-16">
           <div className="flex justify-between items-center mb-12">
             <div>
@@ -296,125 +296,152 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-            <Card className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border-gray-600 overflow-hidden group hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg">
-              <div className="relative h-64">
-                <Image
-                  src="/aircon-truck.jpg?height=300&width=400"
-                  alt="Auto & Truck Aircon Repair"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4 text-6xl font-bold text-white/20">
-                  01
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-start">
-                  <h3 className="text-xl font-bold mb-3 text-white">
-                    Auto & Truck Aircon Repair
-                  </h3>
-                  <p className="text-sm leading-relaxed text-gray-100">
-                    Keep cool on the road—expert aircon repair for cars, trucks,
-                    and more.
-                  </p>
-                </div>
-              </div>
-            </Card>
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6"></div>
+        </div>
 
-            <Card className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border-gray-600 overflow-hidden group hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg">
-              <div className="relative h-64">
-                <Image
-                  src="/welding.jpg?height=300&width=400"
-                  alt="Welding & Fabrication"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4 text-6xl font-bold text-white/20">
-                  02
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-start">
-                  <h3 className="text-xl font-bold mb-3 text-white">
-                    Welding & Fabrication
-                  </h3>
-                  <p className="text-sm leading-relaxed text-gray-100">
-                    Strong, durable welding solutions for vehicle frames and
-                    custom parts.
-                  </p>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0">
+          {/* Service 1 - Detailing */}
+          <div className="relative h-96 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
+              <Image
+                src="/aircon-truck.jpg?height=400&width=300&text=Hydraulic+Detailing"
+                alt="Auto & Truck Aircon Repair"
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute top-6 left-6 text-8xl font-bold text-white/20 group-hover:text-white/30 transition-colors">
+              01
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                AUTO & TRUCK
+                <br />
+                AIRCON REPAIR
+              </h3>
+              <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
+                <p className="text-gray-300 text-sm leading-relaxed mt-2">
+                  Keep cool on the road—expert aircon repair for cars, trucks,
+                  and more.
+                </p>
               </div>
-            </Card>
+            </div>
+          </div>
 
-            <Card className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border-gray-600 overflow-hidden group hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg">
-              <div className="relative h-64">
-                <Image
-                  src="/hydraulic-repair.jpg?height=300&width=400"
-                  alt="Hydraulic Systems Repair"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4 text-6xl font-bold text-white/20">
-                  03
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-start">
-                  <h3 className="text-xl font-bold mb-3 text-white">
-                    Hydraulic Systems Repair
-                  </h3>
-                  <p className="text-sm leading-relaxed text-gray-100">
-                    Diagnosing and fixing hydraulic leaks, hose issues, and
-                    system failures.
-                  </p>
-                </div>
+          {/* Service 2 - Repair */}
+          <div className="relative h-96 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
+              <Image
+                src="/welding.jpg?height=400&width=300&text=Hydraulic+Repair"
+                alt="WELDING & FABRICATION"
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute top-6 left-6 text-8xl font-bold text-white/20 group-hover:text-white/30 transition-colors">
+              02
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                WELDING &
+                <br />
+                FABRICATION
+              </h3>
+              <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
+                <p className="text-gray-300 text-sm leading-relaxed mt-2">
+                  Strong, durable welding solutions for vehicle frames and
+                  custom parts.
+                </p>
               </div>
-            </Card>
+            </div>
+          </div>
 
-            <Card className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border-gray-600 overflow-hidden group hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg">
-              <div className="relative h-64">
-                <Image
-                  src="/forklift-repair.jpg?height=300&width=400"
-                  alt="Forklift Repair"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4 text-6xl font-bold text-white/20">
-                  04
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-start">
-                  <h3 className="text-xl font-bold mb-3 text-white">
-                    Forklift Repair
-                  </h3>
-                  <p className="text-sm leading-relaxed text-gray-100">
-                    Quick and efficient repairs to get your equipment lifting
-                    again.
-                  </p>
-                </div>
+          {/* Service 3 - Maintenance */}
+          <div className="relative h-96 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
+              <Image
+                src="/hydraulic-repair.jpg?height=400&width=300&text=Hydraulic+Maintenance"
+                alt="HYDRAULIC SYSTEMS REPAIR"
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute top-6 left-6 text-8xl font-bold text-white/20 group-hover:text-white/30 transition-colors">
+              03
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                HYDRAULIC
+                <br />
+                SYSTEMS REPAIR
+              </h3>
+              <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
+                <p className="text-gray-300 text-sm leading-relaxed mt-2">
+                  Diagnosing and fixing hydraulic leaks, hose issues, and system
+                  failures.
+                </p>
               </div>
-            </Card>
+            </div>
+          </div>
 
-            <Card className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border-gray-600 overflow-hidden group hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg">
-              <div className="relative h-64">
-                <Image
-                  src="/boomtruck-repair.jpg?height=300&width=400"
-                  alt="Boom Truck Repair"
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4 text-6xl font-bold text-white/20">
-                  05
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-start">
-                  <h3 className="text-xl font-bold mb-3 text-white">
-                    Boom Truck Repair
-                  </h3>
-                  <p className="text-sm leading-relaxed text-gray-100">
-                    Fixing lifting mechanisms, hydraulics, and engine systems.
-                  </p>
-                </div>
+          {/* Service 4 - Diagnostic */}
+          <div className="relative h-96 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
+              <Image
+                src="/forklift-repair.jpg?height=400&width=300&text=Hydraulic+Diagnostic"
+                alt="FORKLIFT REPAIR"
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute top-6 left-6 text-8xl font-bold text-white/20 group-hover:text-white/30 transition-colors">
+              04
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                FORKLIFT
+                <br />
+                REPAIR
+              </h3>
+              <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
+                <p className="text-gray-300 text-sm leading-relaxed mt-2">
+                  Quick and efficient repairs to get your equipment lifting
+                  again.
+                </p>
               </div>
-            </Card>
+            </div>
+          </div>
+
+          {/* Service 5 - Installation */}
+          <div className="relative h-96 group overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
+              <Image
+                src="/boomtruck-repair.jpg?height=400&width=300&text=Hydraulic+Installation"
+                alt="BOOM TRUCK REPAIR"
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            </div>
+            <div className="absolute top-6 left-6 text-8xl font-bold text-white/20 group-hover:text-white/30 transition-colors">
+              05
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                BOOM TRUCK
+                <br />
+                REPAIR
+              </h3>
+              <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
+                <p className="text-gray-300 text-sm leading-relaxed mt-2">
+                  Fixing lifting mechanisms, hydraulics, and engine systems.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -422,7 +449,7 @@ export default function HomePage() {
       {/* Services Section */}
       <section
         id="services"
-        className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-white"
+        className="py-20 bg-gradient-to-br from-neutral-950 via-neutral-800 to-neutral-950 text-white"
       >
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -575,17 +602,14 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white pt-16 pb-4">
+      <footer className="bg-gradient-to-br from-neutral-950 via-neutral-800 to-neutral-950 text-white pt-16 pb-4">
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Company Info */}
             <div>
               <div className="flex items-center space-x-2 mb-6">
-                <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
-                  <Settings className="w-6 h-6 text-white" />
-                </div>
                 <span className="text-xl font-bold">
-                  AA PRECISION & HYDRAULICS
+                  Marde’s Truck & Auto Hydraulic Repair
                 </span>
               </div>
 
