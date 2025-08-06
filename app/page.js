@@ -41,24 +41,26 @@ export default function HomePage() {
     {
       id: 1,
       image: "/hero-banner.jpg?height=800&width=1200&text=Hydraulic+Workshop",
-      subtitle: "We Offer Hydraulic Services",
-      title: "Quality hydraulic repairs\nYou can trust\nEvery time.",
-      buttonText: "FREE QUOTE →",
+      subtitle: "Fast. Reliable. Professional.",
+      title:
+        "From engine repairs to aircon and welding, we keep your vehicles running smoothly.",
+      buttonText: "Book a Free Check-Up",
     },
     {
       id: 2,
       image:
         "/boom-truck.jpg?height=800&width=1200&text=Professional+Equipment+Repair",
-      subtitle: "Professional Equipment Repair",
-      title: "Expert maintenance\nfor heavy machinery\nand equipment.",
-      buttonText: "GET STARTED →",
+      subtitle: "We Fix What Moves Your Business",
+      title:
+        "Forklifts, boom trucks, and hydraulic systems—expert service for your heavy-duty needs.",
+      buttonText: "Get a Free Estimate",
     },
     {
       id: 3,
       image: "/forklift.jpg?height=800&width=1200&text=24/7+Emergency+Service",
-      subtitle: "24/7 Emergency Service",
-      title: "Round-the-clock\nsupport when you\nneed it most.",
-      buttonText: "CALL NOW →",
+      subtitle: "We Come to You—Hassle-Free Repairs at Home",
+      title: "Free check-up and estimate. Message us now on Viber or Facebook",
+      buttonText: "Call Now - 0945-385-0036",
     },
   ];
 
@@ -84,9 +86,9 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Header */}
-      <header className="bg-gray-900 text-white">
+      <header className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-2">
@@ -225,7 +227,10 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section id="about-detailed" className="py-20 bg-gray-900 text-white">
+      <section
+        id="about-detailed"
+        className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-white"
+      >
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Image */}
@@ -241,61 +246,30 @@ export default function HomePage() {
 
             {/* Content */}
             <div>
-              <p className="text-orange-500 font-medium mb-4">ABOUT US</p>
+              <p className="text-orange-500 font-medium mb-4">Who We Are</p>
               <h2 className="text-3xl lg:text-4xl font-bold mb-6">
                 WE MAKE HYDRAULIC REPAIR MORE CONVENIENT
               </h2>
               <p className="text-gray-300 mb-8 leading-relaxed">
-                At AA Precision & Hydraulics, we take pride in delivering
-                reliable, high-quality repair and maintenance solutions for all
-                types of vehicles and heavy equipment. With years of hands-on
-                experience, we specialize in hydraulic system services, engine
-                overhaul, welding, and equipment maintenance—including forklifts
-                and boom trucks.
+                At Marde’s Truck & Auto Hydraulic Repair, we are committed to
+                providing high-quality repairs and service for vehicles and
+                heavy equipment. From auto aircon and welding to forklift and
+                hydraulic repairs, we get the job done right—on time and on-site
+                when needed.
               </p>
               <p className="text-gray-300 mb-8 leading-relaxed">
-                We understand how important your vehicle or equipment is to your
-                daily life or business, which is why we also offer convenient
-                on-site service with free check-up and estimate. Whether you're
-                dealing with a breakdown or need preventive maintenance, we're
-                just a call or message away.
+                Owned by Marde Besinga, our business combines professional
+                workmanship with genuine care for every client. With years of
+                experience and a passion for repair work, we are proud to serve
+                both personal and commercial vehicle owners.
               </p>
-              <p className="text-gray-300 mb-12 leading-relaxed">
-                Our shop is built on a foundation of trust, hard work, and
-                personalized service. We're not just here to fix equipment—we're
-                here to help people get back on the road and back to work with
-                peace of mind.
-              </p>
-
-              {/* Statistics */}
-              <div className="grid grid-cols-2 gap-8">
-                <div>
-                  <div className="text-4xl lg:text-5xl font-bold mb-2">
-                    15+
-                    <div className="w-12 h-1 bg-orange-500 mt-2"></div>
-                  </div>
-                  <p className="text-gray-300">
-                    Years of experience in hydraulic system repair and
-                    maintenance
-                  </p>
-                </div>
-                <div>
-                  <div className="text-4xl lg:text-5xl font-bold mb-2">
-                    500+
-                    <div className="w-12 h-1 bg-orange-500 mt-2"></div>
-                  </div>
-                  <p className="text-gray-300">
-                    Satisfied customers with reliable hydraulic solutions
-                  </p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Full Range Services */}
-      <section className="py-20 bg-gray-900 text-white">
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
         <div className="container mx-auto px-8 md:px-16">
           <div className="flex justify-between items-center mb-12">
             <div>
@@ -312,92 +286,140 @@ export default function HomePage() {
               <p className="text-lg mb-6">
                 providing reliable and high quality service
               </p>
-              <Button className="bg-orange-500 hover:bg-orange-600">
+              {/* <Button className="bg-orange-500 hover:bg-orange-600">
                 BOOK ONLINE
-              </Button>
+              </Button> */}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="bg-gray-800 border-gray-700 overflow-hidden group hover:bg-gray-700 transition-colors">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            <Card className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border-gray-600 overflow-hidden group hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg">
               <div className="relative h-64">
                 <Image
-                  src="/service.jpg?height=300&width=400"
-                  alt="Maintenance Service"
+                  src="/aircon-truck.jpg?height=300&width=400"
+                  alt="Auto & Truck Aircon Repair"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4 text-6xl font-bold text-white/20">
                   01
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-start">
+                  <h3 className="text-xl font-bold mb-3 text-white">
+                    Auto & Truck Aircon Repair
+                  </h3>
+                  <p className="text-sm leading-relaxed text-gray-100">
+                    Keep cool on the road—expert aircon repair for cars, trucks,
+                    and more.
+                  </p>
+                </div>
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-white">
-                  MAINTENANCE SERVICE
-                </h3>
-              </CardContent>
             </Card>
 
-            <Card className="bg-gray-800 border-gray-700 overflow-hidden group hover:bg-gray-700 transition-colors">
+            <Card className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border-gray-600 overflow-hidden group hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg">
               <div className="relative h-64">
                 <Image
-                  src="/service.jpg?height=300&width=400"
-                  alt="Repair Service"
+                  src="/welding.jpg?height=300&width=400"
+                  alt="Welding & Fabrication"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4 text-6xl font-bold text-white/20">
                   02
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-start">
+                  <h3 className="text-xl font-bold mb-3 text-white">
+                    Welding & Fabrication
+                  </h3>
+                  <p className="text-sm leading-relaxed text-gray-100">
+                    Strong, durable welding solutions for vehicle frames and
+                    custom parts.
+                  </p>
+                </div>
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-white">REPAIR SERVICE</h3>
-              </CardContent>
             </Card>
 
-            <Card className="bg-gray-800 border-gray-700 overflow-hidden group hover:bg-gray-700 transition-colors">
+            <Card className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border-gray-600 overflow-hidden group hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg">
               <div className="relative h-64">
                 <Image
-                  src="/service.jpg?height=300&width=400"
-                  alt="Installation Service"
+                  src="/hydraulic-repair.jpg?height=300&width=400"
+                  alt="Hydraulic Systems Repair"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4 text-6xl font-bold text-white/20">
                   03
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-start">
+                  <h3 className="text-xl font-bold mb-3 text-white">
+                    Hydraulic Systems Repair
+                  </h3>
+                  <p className="text-sm leading-relaxed text-gray-100">
+                    Diagnosing and fixing hydraulic leaks, hose issues, and
+                    system failures.
+                  </p>
+                </div>
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-white">
-                  INSTALLATION SERVICE
-                </h3>
-              </CardContent>
             </Card>
 
-            <Card className="bg-gray-800 border-gray-700 overflow-hidden group hover:bg-gray-700 transition-colors">
+            <Card className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border-gray-600 overflow-hidden group hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg">
               <div className="relative h-64">
                 <Image
-                  src="/service.jpg?height=300&width=400"
-                  alt="Diagnostic Service"
+                  src="/forklift-repair.jpg?height=300&width=400"
+                  alt="Forklift Repair"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4 text-6xl font-bold text-white/20">
                   04
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-start">
+                  <h3 className="text-xl font-bold mb-3 text-white">
+                    Forklift Repair
+                  </h3>
+                  <p className="text-sm leading-relaxed text-gray-100">
+                    Quick and efficient repairs to get your equipment lifting
+                    again.
+                  </p>
+                </div>
               </div>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-white">
-                  DIAGNOSTIC SERVICE
-                </h3>
-              </CardContent>
+            </Card>
+
+            <Card className="bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800 border-gray-600 overflow-hidden group hover:from-gray-700 hover:via-gray-600 hover:to-gray-700 transition-all duration-300 hover:scale-105 cursor-pointer shadow-lg">
+              <div className="relative h-64">
+                <Image
+                  src="/boomtruck-repair.jpg?height=300&width=400"
+                  alt="Boom Truck Repair"
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute top-4 left-4 text-6xl font-bold text-white/20">
+                  05
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white flex flex-col justify-start">
+                  <h3 className="text-xl font-bold mb-3 text-white">
+                    Boom Truck Repair
+                  </h3>
+                  <p className="text-sm leading-relaxed text-gray-100">
+                    Fixing lifting mechanisms, hydraulics, and engine systems.
+                  </p>
+                </div>
+              </div>
             </Card>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 bg-gray-900 text-white">
+      <section
+        id="services"
+        className="py-20 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 text-white"
+      >
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative w-full h-[400px] lg:h-full rounded-lg overflow-hidden shadow-lg">
@@ -411,25 +433,27 @@ export default function HomePage() {
             </div>
             {/* Services Content */}
             <div>
-              <p className="text-orange-500 font-medium mb-4">WHY CHOOSE US</p>
+              <p className="text-orange-500 font-medium mb-4">
+                Why Choose Marde’s?
+              </p>
               <h2 className="text-3xl lg:text-4xl font-bold mb-8">
-                Get your equipment back on track with our expert Hydraulic
-                repair services
+                When it comes to vehicle and heavy equipment repairs, you
+                deserve nothing but the best.
               </h2>
 
               <div className="grid gap-6">
-                <Card className="bg-white text-gray-900 p-6">
+                <Card className="bg-gradient-to-br from-white via-gray-50 to-white text-gray-900 p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center shadow-md">
                       <Settings className="w-6 h-6 text-orange-500" />
                     </div>
                     <div>
                       <h4 className="font-bold text-lg mb-2">
-                        Quality parts & Equipment
+                        Free Check-Up & Estimate
                       </h4>
                       <p className="text-gray-600">
-                        Hydraulic system repair and maintenance using only
-                        premium quality parts and equipment.
+                        No hidden fees—get a full check-up and honest estimate
+                        at no cost.
                       </p>
                     </div>
                   </div>
@@ -442,28 +466,28 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h4 className="font-bold text-lg mb-2">
-                        Professional Engineer
+                        Accepts Home Service
                       </h4>
                       <p className="text-gray-600">
-                        Overall, professional hydraulic engineers play a crucial
-                        role in various industries.
+                        Too busy to visit? We’ll come to your location for
+                        repairs or diagnostics.
                       </p>
                     </div>
                   </div>
                 </Card>
 
-                <Card className="bg-white text-gray-900 p-6">
+                <Card className="bg-gradient-to-br from-white via-gray-50 to-white text-gray-900 p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200">
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center shadow-md">
                       <Clock className="w-6 h-6 text-orange-500" />
                     </div>
                     <div>
                       <h4 className="font-bold text-lg mb-2">
-                        24/7 Friendly Services
+                        Experienced in Hydraulic & Heavy Equipment
                       </h4>
                       <p className="text-gray-600">
-                        Friendly services are those that are accessible,
-                        helpful, and customer-focused.
+                        Skilled in handling forklifts, boom trucks, and other
+                        heavy-duty machinery.
                       </p>
                     </div>
                   </div>
@@ -475,7 +499,10 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-white">
+      <section
+        id="contact"
+        className="py-20 bg-gradient-to-br from-white via-gray-50 to-white"
+      >
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Info */}
@@ -507,7 +534,7 @@ export default function HomePage() {
                   <div>
                     <p className="font-medium text-gray-900">Email drop Us</p>
                     <p className="text-lg font-bold">
-                      needhelprepair@gmail.com
+                      mardeautoservices@gmail.com
                     </p>
                   </div>
                 </div>
@@ -518,7 +545,9 @@ export default function HomePage() {
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Location</p>
-                    <p className="text-lg font-bold">Inglewood, Maine 98380</p>
+                    <p className="text-lg font-bold">
+                      Alegria Sur, Loay, Philippines, 6303
+                    </p>
                   </div>
                 </div>
               </div>
@@ -527,7 +556,7 @@ export default function HomePage() {
             {/* Google Map replaces Send A Message */}
             <div className="relative w-full h-[350px] lg:h-[450px] rounded-lg overflow-hidden shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d245.85259988923826!2d123.89780475496833!3d9.626095388447661!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sph!4v1753620893027!5m2!1sen!2sph"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3933.896923892308!2d123.97943737583049!3d9.60414347971945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33aa45307af86b7b%3A0x27be43337ef62e1a!2sMarde&#39;s%20Auto%20%26%20Heavy%20Equipment%20Repair!5e0!3m2!1sen!2sph!4v1754509128205!5m2!1sen!2sph"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -542,7 +571,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white pt-16 pb-4">
+      <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white pt-16 pb-4">
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Company Info */}
@@ -593,25 +622,7 @@ export default function HomePage() {
                     className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
                   >
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    OUR TEAM
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#works"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
-                  >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    OUR WORKS
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#faq"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
-                  >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    FAQ
+                    SERVICES
                   </Link>
                 </li>
               </ul>
@@ -627,7 +638,7 @@ export default function HomePage() {
                     className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
                   >
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    HYDRAULIC REPAIR
+                    AUTO & TRUCK AIRCON REPAIR
                   </Link>
                 </li>
                 <li>
@@ -636,7 +647,7 @@ export default function HomePage() {
                     className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
                   >
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    SYSTEM MAINTENANCE
+                    WELDING & FABRICATION
                   </Link>
                 </li>
                 <li>
@@ -645,16 +656,7 @@ export default function HomePage() {
                     className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
                   >
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    PUMP REPAIR
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#services"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
-                  >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    CYLINDER REPAIR
+                    HYDRAULIC SYSTEMS
                   </Link>
                 </li>
               </ul>
@@ -670,7 +672,7 @@ export default function HomePage() {
                     className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
                   >
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    HOSE REPLACEMENT
+                    HEAVY EQUIPMENT OVERHAUL
                   </Link>
                 </li>
                 <li>
@@ -679,7 +681,7 @@ export default function HomePage() {
                     className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
                   >
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    VALVE REPAIR
+                    FORKLIFT REPAIR
                   </Link>
                 </li>
                 <li>
@@ -688,16 +690,7 @@ export default function HomePage() {
                     className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
                   >
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    FLUID ANALYSIS
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#services"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
-                  >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    EMERGENCY SERVICE
+                    BOOM TRUCK REPAIR
                   </Link>
                 </li>
               </ul>
@@ -707,7 +700,7 @@ export default function HomePage() {
           {/* Bottom Border */}
           <div className="border-t border-gray-700 mt-2 pt-4 text-center">
             <p className="text-gray-400">
-              © 2025 AA Precision & Hydraulics. All rights reserved.
+              © 2025 Marde's Truck & Auto Hydraulic Repair. All rights reserved.
             </p>
           </div>
         </div>
