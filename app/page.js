@@ -334,7 +334,7 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
               <Image
                 src="/welding.jpg?height=400&width=300&text=Hydraulic+Repair"
-                alt="WELDING & FABRICATION"
+                alt="WELDING"
                 fill
                 className="object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -345,9 +345,9 @@ export default function HomePage() {
             <div className="absolute bottom-0 left-0 right-0 p-6">
               <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
               <h3 className="text-xl font-bold text-white mb-2">
-                WELDING &
+                WELDING
                 <br />
-                FABRICATION
+                <br />
               </h3>
               <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
                 <p className="text-gray-300 text-sm leading-relaxed mt-2">
@@ -666,7 +666,7 @@ export default function HomePage() {
                     className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
                   >
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    AUTO & TRUCK AIRCON REPAIR
+                    AUTO AIRCON REPAIR
                   </Link>
                 </li>
                 <li>
@@ -675,7 +675,16 @@ export default function HomePage() {
                     className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
                   >
                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    WELDING & FABRICATION
+                    TRUCK AIRCON REPAIR
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="#services"
+                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                  >
+                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    WELDING
                   </Link>
                 </li>
                 <li>
@@ -694,6 +703,15 @@ export default function HomePage() {
             <div>
               <h3 className="text-xl font-bold mb-6">MORE SERVICES</h3>
               <ul className="space-y-3">
+                <li>
+                  <Link
+                    href="#services"
+                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                  >
+                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    CHANGE OIL
+                  </Link>
+                </li>
                 <li>
                   <Link
                     href="#services"
