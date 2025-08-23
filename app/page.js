@@ -32,10 +32,15 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import { ChevronUp } from "lucide-react";
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [aboutInView, setAboutInView] = useState(false);
+  const [servicesInView, setServicesInView] = useState(false);
+  const [whyChooseInView, setWhyChooseInView] = useState(false);
 
   const slides = [
     {
@@ -64,80 +69,168 @@ export default function HomePage() {
     },
   ];
 
-  const nextSlide = () => {
+  // Fix: useCallback to ensure stable reference for useEffect
+  const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
-  };
+  }, [slides.length]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-  };
+  }, [slides.length]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
 
-  // Auto-advance slides every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(timer);
+  }, [nextSlide]);
+
+  // Handle scroll to show/hide back to top button
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Detect when About section comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAboutInView(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) {
+      observer.observe(aboutSection);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Detect when Services section comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setServicesInView(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const servicesSection = document.getElementById("services");
+    if (servicesSection) {
+      observer.observe(servicesSection);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Detect when Why Choose Marde's section comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setWhyChooseInView(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const whyChooseSection = document.getElementById("why-choose");
+    if (whyChooseSection) {
+      observer.observe(whyChooseSection);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  // Handle button clicks for different slides
+  const handleButtonClick = (slideId) => {
+    switch (slideId) {
+      case 1:
+        // Redirect to Facebook page
+        window.open(
+          "https://www.facebook.com/mardes.auto.and.truck.hydraulic.repair",
+          "_blank"
+        );
+        break;
+      case 2:
+        // Redirect to Facebook page
+        window.open(
+          "https://www.facebook.com/mardes.auto.and.truck.hydraulic.repair",
+          "_blank"
+        );
+        break;
+      case 3:
+        // Redirect to Viber to call the number
+        window.open("viber://call?number=+639453850036", "_blank");
+        break;
+      default:
+        break;
+    }
+  };
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-neutral-950">
       {/* Header */}
-      <header className="bg-gradient-to-r from-neutral-950 via-neutral-800 to-neutral-950 text-white shadow-lg">
+      <header className="bg-neutral-950 text-white shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
             <div className="flex items-center space-x-2">
-              {/* <div className="w-10 h-10 rounded-full flex items-center justify-center">
+              <div className=" rounded-full flex items-center justify-center">
                 <img
-                  src="/logo.png"
+                  src="/marde-white-logo.png"
                   alt="Marde’s Auto & Heavy Equipment Repair Logo"
-                  className="w-8 h-8 object-contain"
+                  className="w-80 h-8 object-contain"
                 />
-              </div> */}
-              <span className="text-sm font-medium italic text-white">
+              </div>
+              {/* <span className="text-sm font-medium italic text-white">
                 Marde’s Truck & Auto Hydraulic Repair
-              </span>
+              </span> */}
             </div>
 
             <nav className="hidden md:flex items-center space-x-8">
-              <Link
-                href="#"
-                className="hover:text-orange-500 transition-colors"
-              >
+              <Link href="#" className="hover:text-red-500 transition-colors">
                 Home
               </Link>
               <Link
                 href="#about"
-                className="hover:text-orange-500 transition-colors"
+                className="hover:text-red-500 transition-colors"
               >
                 About Us
               </Link>
               <Link
                 href="#services"
-                className="hover:text-orange-500 transition-colors"
+                className="hover:text-red-500 transition-colors"
               >
                 Services
               </Link>
               <Link
-                href="#testimonials"
-                className="hover:text-orange-500 transition-colors"
-              >
-                Testimonial
-              </Link>
-              <Link
-                href="#blog"
-                className="hover:text-orange-500 transition-colors"
-              >
-                Blog
-              </Link>
-              <Link
                 href="#contact"
-                className="hover:text-orange-500 transition-colors"
+                className="hover:text-red-500 transition-colors"
               >
                 Contact Us
               </Link>
@@ -145,7 +238,7 @@ export default function HomePage() {
 
             <div className="flex items-center space-x-4">
               <div className="hidden lg:flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-orange-500" />
+                <Phone className="w-4 h-4 text-red-500" />
 
                 <span className="font-bold">+ (639) 945-385-0036</span>
               </div>
@@ -176,7 +269,7 @@ export default function HomePage() {
             <div className="absolute left-0 top-0 h-full w-2/5 md:w-1/2 bg-gradient-to-r from-black/80 via-black/60 to-transparent z-10 pointer-events-none" />
             <div className="relative container mx-auto px-8 md:px-16 py-20 lg:py-32 h-full flex items-center z-20">
               <div className="max-w-2xl">
-                <p className="text-orange-500 font-medium mb-4 animate-fade-in-up">
+                <p className="text-red-400 font-medium mb-4 animate-fade-in-up">
                   {slide.subtitle}
                 </p>
                 <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up animation-delay-200">
@@ -187,32 +280,16 @@ export default function HomePage() {
                     </span>
                   ))}
                 </h1>
-                <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 text-lg animate-fade-in-up animation-delay-400">
+                <Button
+                  className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 text-lg animate-fade-in-up animation-delay-400"
+                  onClick={() => handleButtonClick(slide.id)}
+                >
                   {slide.buttonText}
                 </Button>
               </div>
             </div>
           </div>
         ))}
-
-        {/* Navigation Arrows */}
-        {/* <Button
-          onClick={prevSlide}
-          variant="outline"
-          size="icon"
-          className="absolute left-8 top-1/2 transform -translate-y-1/2 rounded-full bg-white/10 border-white/20 hover:bg-white/20 transition-all duration-300"
-        >
-          <ChevronLeft className="w-6 h-6 text-white" />
-        </Button> */}
-
-        {/* <Button
-          onClick={nextSlide}
-          variant="outline"
-          size="icon"
-          className="absolute right-8 top-1/2 transform -translate-y-1/2 rounded-full bg-white/10 border-white/20 hover:bg-white/20 transition-all duration-300"
-        >
-          <ChevronRight className="w-6 h-6 text-white" />
-        </Button> */}
 
         {/* Slide Indicators */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
@@ -222,7 +299,7 @@ export default function HomePage() {
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? "bg-orange-500 scale-125"
+                  ? "bg-red-500 scale-125"
                   : "bg-white/30 hover:bg-white/50"
               }`}
             />
@@ -231,14 +308,17 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section
-        id="about-detailed"
-        className="py-20 bg-gradient-to-br from-neutral-950 via-neutral-800 to-neutral-950 text-white"
-      >
+      <section id="about" className="py-20 bg-neutral-950 text-white">
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Image */}
-            <div className="relative">
+            <div
+              className={`relative transition-all duration-1000 ${
+                aboutInView
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-[-100%] opacity-0"
+              }`}
+            >
               <Image
                 src="/hydraulic.jpg?height=600&width=800"
                 alt="Hydraulic technician working on equipment"
@@ -249,13 +329,19 @@ export default function HomePage() {
             </div>
 
             {/* Content */}
-            <div>
-              <p className="text-orange-500 font-medium mb-4">Who We Are</p>
+            <div
+              className={`transition-all duration-1000 ${
+                aboutInView
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-[100%] opacity-0"
+              }`}
+            >
+              <p className="text-red-500 font-medium mb-4">Who We Are</p>
               <h2 className="text-3xl lg:text-4xl font-bold mb-6">
                 WE MAKE HYDRAULIC REPAIR MORE CONVENIENT
               </h2>
               <p className="text-gray-300 mb-8 leading-relaxed">
-                At Marde’s Truck & Auto Hydraulic Repair, we are committed to
+                At Marde's Truck & Auto Hydraulic Repair, we are committed to
                 providing high-quality repairs and service for vehicles and
                 heavy equipment. From auto aircon and welding to forklift and
                 hydraulic repairs, we get the job done right—on time and on-site
@@ -272,8 +358,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Full Range Services */}
-      <section className="py-20 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 text-white">
+      {/* Services */}
+      <section id="services" className="py-20 bg-neutral-900 text-white">
         <div className="container mx-auto px-8 md:px-16">
           <div className="flex justify-between items-center mb-12">
             <div>
@@ -302,7 +388,7 @@ export default function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0">
           {/* Service 1 - Detailing */}
           <div className="relative h-96 group overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90">
               <Image
                 src="/aircon-truck.jpg?height=400&width=300&text=Hydraulic+Detailing"
                 alt="Auto & Truck Aircon Repair"
@@ -313,15 +399,15 @@ export default function HomePage() {
             <div className="absolute top-6 left-6 text-8xl font-bold text-white/20 group-hover:text-white/30 transition-colors">
               01
             </div>
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent">
+              <div className="w-16 h-1 bg-red-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
               <h3 className="text-xl font-bold text-white mb-2">
                 AUTO & TRUCK
                 <br />
                 AIRCON REPAIR
               </h3>
               <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
-                <p className="text-gray-300 text-sm leading-relaxed mt-2">
+                <p className="text-gray-100 text-sm leading-relaxed mt-2">
                   Keep cool on the road—expert aircon repair for cars, trucks,
                   and more.
                 </p>
@@ -331,7 +417,7 @@ export default function HomePage() {
 
           {/* Service 2 - Repair */}
           <div className="relative h-96 group overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90">
               <Image
                 src="/welding.jpg?height=400&width=300&text=Hydraulic+Repair"
                 alt="WELDING"
@@ -342,15 +428,15 @@ export default function HomePage() {
             <div className="absolute top-6 left-6 text-8xl font-bold text-white/20 group-hover:text-white/30 transition-colors">
               02
             </div>
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent">
+              <div className="w-16 h-1 bg-red-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
               <h3 className="text-xl font-bold text-white mb-2">
                 WELDING
                 <br />
                 <br />
               </h3>
               <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
-                <p className="text-gray-300 text-sm leading-relaxed mt-2">
+                <p className="text-gray-100 text-sm leading-relaxed mt-2">
                   Strong, durable welding solutions for vehicle frames and
                   custom parts.
                 </p>
@@ -360,7 +446,7 @@ export default function HomePage() {
 
           {/* Service 3 - Maintenance */}
           <div className="relative h-96 group overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90">
               <Image
                 src="/hydraulic-repair.jpg?height=400&width=300&text=Hydraulic+Maintenance"
                 alt="HYDRAULIC SYSTEMS REPAIR"
@@ -371,15 +457,15 @@ export default function HomePage() {
             <div className="absolute top-6 left-6 text-8xl font-bold text-white/20 group-hover:text-white/30 transition-colors">
               03
             </div>
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent">
+              <div className="w-16 h-1 bg-red-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
               <h3 className="text-xl font-bold text-white mb-2">
                 HYDRAULIC
                 <br />
                 SYSTEMS REPAIR
               </h3>
               <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
-                <p className="text-gray-300 text-sm leading-relaxed mt-2">
+                <p className="text-gray-100 text-sm leading-relaxed mt-2">
                   Diagnosing and fixing hydraulic leaks, hose issues, and system
                   failures.
                 </p>
@@ -389,7 +475,7 @@ export default function HomePage() {
 
           {/* Service 4 - Diagnostic */}
           <div className="relative h-96 group overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90">
               <Image
                 src="/forklift-repair.jpg?height=400&width=300&text=Hydraulic+Diagnostic"
                 alt="FORKLIFT REPAIR"
@@ -400,15 +486,15 @@ export default function HomePage() {
             <div className="absolute top-6 left-6 text-8xl font-bold text-white/20 group-hover:text-white/30 transition-colors">
               04
             </div>
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent">
+              <div className="w-16 h-1 bg-red-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
               <h3 className="text-xl font-bold text-white mb-2">
                 FORKLIFT
                 <br />
                 REPAIR
               </h3>
               <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
-                <p className="text-gray-300 text-sm leading-relaxed mt-2">
+                <p className="text-gray-100 text-sm leading-relaxed mt-2">
                   Quick and efficient repairs to get your equipment lifting
                   again.
                 </p>
@@ -418,7 +504,7 @@ export default function HomePage() {
 
           {/* Service 5 - Installation */}
           <div className="relative h-96 group overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/90">
               <Image
                 src="/boomtruck-repair.jpg?height=400&width=300&text=Hydraulic+Installation"
                 alt="BOOM TRUCK REPAIR"
@@ -429,15 +515,15 @@ export default function HomePage() {
             <div className="absolute top-6 left-6 text-8xl font-bold text-white/20 group-hover:text-white/30 transition-colors">
               05
             </div>
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <div className="w-16 h-1 bg-orange-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
+            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 via-black/60 to-transparent">
+              <div className="w-16 h-1 bg-red-500 mb-4 group-hover:w-24 transition-all duration-300"></div>
               <h3 className="text-xl font-bold text-white mb-2">
                 BOOM TRUCK
                 <br />
                 REPAIR
               </h3>
               <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-out">
-                <p className="text-gray-300 text-sm leading-relaxed mt-2">
+                <p className="text-gray-100 text-sm leading-relaxed mt-2">
                   Fixing lifting mechanisms, hydraulics, and engine systems.
                 </p>
               </div>
@@ -446,14 +532,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section
-        id="services"
-        className="py-20 bg-gradient-to-br from-neutral-950 via-neutral-800 to-neutral-950 text-white"
-      >
+      {/* Why Choose Section */}
+      <section id="why-choose" className="py-20 bg-neutral-950 text-white">
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative w-full h-[400px] lg:h-full rounded-lg overflow-hidden shadow-lg">
+            <div
+              className={`relative w-full h-[400px] lg:h-full rounded-lg overflow-hidden shadow-lg transition-all duration-1000 ${
+                whyChooseInView
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-[-100%] opacity-0"
+              }`}
+            >
               <Image
                 src="/choose.jpg?height=400&width=600"
                 alt="Workshop Equipment"
@@ -463,9 +552,15 @@ export default function HomePage() {
               />
             </div>
             {/* Services Content */}
-            <div>
-              <p className="text-orange-500 font-medium mb-4">
-                Why Choose Marde’s?
+            <div
+              className={`transition-all duration-1000 ${
+                whyChooseInView
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-[100%] opacity-0"
+              }`}
+            >
+              <p className="text-red-500 font-medium mb-4">
+                Why Choose Marde's?
               </p>
               <h2 className="text-3xl lg:text-4xl font-bold mb-8">
                 When it comes to vehicle and heavy equipment repairs, you
@@ -473,10 +568,17 @@ export default function HomePage() {
               </h2>
 
               <div className="grid gap-6">
-                <Card className="bg-gradient-to-br from-white via-gray-50 to-white text-gray-900 p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200">
+                <Card
+                  className={`bg-gradient-to-br from-white via-gray-50 to-white text-gray-900 p-6 shadow-lg hover:shadow-xl transition-all duration-1000 border border-gray-200 ${
+                    whyChooseInView
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-[50px] opacity-0"
+                  }`}
+                  style={{ transitionDelay: "600ms" }}
+                >
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center shadow-md">
-                      <Settings className="w-6 h-6 text-orange-500" />
+                      <Settings className="w-6 h-6 text-red-500" />
                     </div>
                     <div>
                       <h4 className="font-bold text-lg mb-2">
@@ -490,27 +592,41 @@ export default function HomePage() {
                   </div>
                 </Card>
 
-                <Card className="bg-white text-gray-900 p-6">
+                <Card
+                  className={`bg-white text-gray-900 p-6 transition-all duration-1000 ${
+                    whyChooseInView
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-[50px] opacity-0"
+                  }`}
+                  style={{ transitionDelay: "800ms" }}
+                >
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                      <Wrench className="w-6 h-6 text-orange-500" />
+                      <Wrench className="w-6 h-6 text-red-500" />
                     </div>
                     <div>
                       <h4 className="font-bold text-lg mb-2">
                         Accepts Home Service
                       </h4>
                       <p className="text-gray-600">
-                        Too busy to visit? We’ll come to your location for
+                        Too busy to visit? We'll come to your location for
                         repairs or diagnostics.
                       </p>
                     </div>
                   </div>
                 </Card>
 
-                <Card className="bg-gradient-to-br from-white via-gray-50 to-white text-gray-900 p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200">
+                <Card
+                  className={`bg-gradient-to-br from-white via-gray-50 to-white text-gray-900 p-6 shadow-lg hover:shadow-xl transition-all duration-1000 border border-gray-200 ${
+                    whyChooseInView
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-[50px] opacity-0"
+                  }`}
+                  style={{ transitionDelay: "1200ms" }}
+                >
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center shadow-md">
-                      <Clock className="w-6 h-6 text-orange-500" />
+                      <Clock className="w-6 h-6 text-red-500" />
                     </div>
                     <div>
                       <h4 className="font-bold text-lg mb-2">
@@ -538,7 +654,7 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Info */}
             <div>
-              <p className="text-orange-500 font-medium mb-4">CONTACT US</p>
+              <p className="text-red-500 font-medium mb-4">CONTACT US</p>
               <h2 className="text-4xl font-bold text-gray-900 mb-6">
                 Get In Touch
               </h2>
@@ -550,17 +666,17 @@ export default function HomePage() {
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-orange-500" />
+                    <Phone className="w-6 h-6 text-red-500" />
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">Phone Call</p>
+                    <p className="font-medium text-gray-900">Viber Call</p>
                     <p className="text-lg font-bold">+ (639) 945-385-0036</p>
                   </div>
                 </div>
 
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-orange-500" />
+                    <Mail className="w-6 h-6 text-red-500" />
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Email drop Us</p>
@@ -572,7 +688,7 @@ export default function HomePage() {
 
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-orange-500" />
+                    <MapPin className="w-6 h-6 text-red-500" />
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Location</p>
@@ -602,7 +718,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-br from-neutral-950 via-neutral-800 to-neutral-950 text-white pt-16 pb-4">
+      <footer className="bg-neutral-950 text-white pt-16 pb-4">
         <div className="container mx-auto px-8 md:px-16">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Company Info */}
@@ -620,13 +736,19 @@ export default function HomePage() {
 
               <div>
                 <div className="flex space-x-4">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="rounded-full bg-transparent"
+                  <Link
+                    href="https://www.facebook.com/mardes.auto.and.truck.hydraulic.repair"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <Facebook className="w-4 h-4" />
-                  </Button>
+                    <Button
+                      variant="outline"
+                      size="icon"
+                      className="rounded-full bg-transparent hover:bg-red-500 hover:text-white transition-colors"
+                    >
+                      <Facebook className="w-4 h-4" />
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -638,18 +760,18 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#about"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                    className="text-gray-300 hover:text-red-500 transition-colors flex items-center"
                   >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                     ABOUT US
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="#team"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                    className="text-gray-300 hover:text-red-500 transition-colors flex items-center"
                   >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                     SERVICES
                   </Link>
                 </li>
@@ -663,36 +785,36 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                    className="text-gray-300 hover:text-red-500 transition-colors flex items-center"
                   >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                     AUTO AIRCON REPAIR
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                    className="text-gray-300 hover:text-red-500 transition-colors flex items-center"
                   >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                     TRUCK AIRCON REPAIR
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                    className="text-gray-300 hover:text-red-500 transition-colors flex items-center"
                   >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                     WELDING
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                    className="text-gray-300 hover:text-red-500 transition-colors flex items-center"
                   >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                     HYDRAULIC SYSTEMS
                   </Link>
                 </li>
@@ -706,36 +828,36 @@ export default function HomePage() {
                 <li>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                    className="text-gray-300 hover:text-red-500 transition-colors flex items-center"
                   >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                     CHANGE OIL
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                    className="text-gray-300 hover:text-red-500 transition-colors flex items-center"
                   >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                     HEAVY EQUIPMENT OVERHAUL
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                    className="text-gray-300 hover:text-red-500 transition-colors flex items-center"
                   >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                     FORKLIFT REPAIR
                   </Link>
                 </li>
                 <li>
                   <Link
                     href="#services"
-                    className="text-gray-300 hover:text-orange-500 transition-colors flex items-center"
+                    className="text-gray-300 hover:text-red-500 transition-colors flex items-center"
                   >
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                    <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
                     BOOM TRUCK REPAIR
                   </Link>
                 </li>
@@ -751,6 +873,16 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+      {/* Back to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-50 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 hover:shadow-xl"
+          aria-label="Back to top"
+        >
+          <ChevronUp className="w-6 h-6" />
+        </button>
+      )}
     </div>
   );
 }
