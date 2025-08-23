@@ -41,6 +41,7 @@ export default function HomePage() {
   const [aboutInView, setAboutInView] = useState(false);
   const [servicesInView, setServicesInView] = useState(false);
   const [whyChooseInView, setWhyChooseInView] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const slides = [
     {
@@ -199,19 +200,16 @@ export default function HomePage() {
       <header className="bg-neutral-950 text-white shadow-lg">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between py-4">
-            <div className="flex items-center space-x-2">
-              <div className=" rounded-full flex items-center justify-center">
-                <img
-                  src="/marde-white-logo.png"
-                  alt="Marde’s Auto & Heavy Equipment Repair Logo"
-                  className="w-80 h-8 object-contain"
-                />
-              </div>
-              {/* <span className="text-sm font-medium italic text-white">
-                Marde’s Truck & Auto Hydraulic Repair
-              </span> */}
+            {/* Logo - Left side */}
+            <div className="flex items-center">
+              <img
+                src="/marde-white-logo.png"
+                alt="Marde's Auto & Heavy Equipment Repair Logo"
+                className="w-64 h-8 object-contain"
+              />
             </div>
 
+            {/* Navigation - Center */}
             <nav className="hidden md:flex items-center space-x-8">
               <Link href="#" className="hover:text-red-500 transition-colors">
                 Home
@@ -236,19 +234,88 @@ export default function HomePage() {
               </Link>
             </nav>
 
+            {/* Right side - Phone number and hamburger */}
             <div className="flex items-center space-x-4">
               <div className="hidden lg:flex items-center space-x-2">
                 <Phone className="w-4 h-4 text-red-500" />
-
                 <span className="font-bold">+ (639) 945-385-0036</span>
               </div>
+
+              {/* Hamburger Menu Button */}
+              <button
+                className="md:hidden p-2 rounded-md hover:bg-gray-800 transition-colors"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle mobile menu"
+              >
+                <div className="w-6 h-6 flex flex-col justify-center items-center">
+                  <span
+                    className={`w-5 h-0.5 bg-white transition-all duration-300 ${
+                      mobileMenuOpen ? "rotate-45 translate-y-1" : ""
+                    }`}
+                  ></span>
+                  <span
+                    className={`w-5 h-0.5 bg-white transition-all duration-300 mt-1 ${
+                      mobileMenuOpen ? "opacity-0" : ""
+                    }`}
+                  ></span>
+                  <span
+                    className={`w-5 h-0.5 bg-white transition-all duration-300 mt-1 ${
+                      mobileMenuOpen ? "-rotate-45 -translate-y-1" : ""
+                    }`}
+                  ></span>
+                </div>
+              </button>
             </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <div
+            className={`md:hidden transition-all duration-300 overflow-hidden ${
+              mobileMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+            }`}
+          >
+            <nav className="py-4 space-y-4 border-t border-gray-700">
+              <Link
+                href="#"
+                className="block hover:text-red-500 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="#about"
+                className="block hover:text-red-500 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                About Us
+              </Link>
+              <Link
+                href="#services"
+                className="block hover:text-red-500 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Services
+              </Link>
+              <Link
+                href="#contact"
+                className="block hover:text-red-500 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact Us
+              </Link>
+              <div className="pt-4 border-t border-gray-700">
+                <div className="flex items-center space-x-2">
+                  <Phone className="w-4 h-4 text-red-500" />
+                  <span className="font-bold">+ (639) 945-385-0036</span>
+                </div>
+              </div>
+            </nav>
           </div>
         </div>
       </header>
 
       {/* Hero Carousel Section */}
-      <section className="relative min-h-screen bg-gray-900 text-white overflow-hidden">
+      <section className="relative min-h-[50vh] bg-gray-900 text-white overflow-hidden">
         {/* Slides */}
         {slides.map((slide, index) => (
           <div
@@ -260,19 +327,21 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 to-gray-900/50">
               <Image
                 src={slide.image || "/placeholder.svg"}
-                alt={`Slide ${slide.id}`}
+                alt="service-images"
                 fill
                 className="object-cover"
+                priority
+                sizes="100vw"
               />
             </div>
-            {/* Overlay for text visibility */}
-            <div className="absolute left-0 top-0 h-full w-2/5 md:w-1/2 bg-gradient-to-r from-black/80 via-black/60 to-transparent z-10 pointer-events-none" />
-            <div className="relative container mx-auto px-8 md:px-16 py-20 lg:py-32 h-full flex items-center z-20">
-              <div className="max-w-2xl">
-                <p className="text-red-400 font-medium mb-4 animate-fade-in-up">
+            {/* Overlay for text visibility - mobile responsive */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-transparent md:left-0 md:top-0 md:h-full md:w-2/5 lg:w-1/2 z-10 pointer-events-none" />
+            <div className="relative container mx-auto px-4 sm:px-8 md:px-16 py-16 sm:py-20 lg:py-32 h-full flex items-center z-20">
+              <div className="max-w-full sm:max-w-lg md:max-w-2xl">
+                <p className="text-red-400 font-medium mb-3 sm:mb-4 text-sm sm:text-base animate-fade-in-up">
                   {slide.subtitle}
                 </p>
-                <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight animate-fade-in-up animation-delay-200">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight animate-fade-in-up animation-delay-200">
                   {slide.title.split("\n").map((line, i) => (
                     <span key={i}>
                       {line}
@@ -281,7 +350,7 @@ export default function HomePage() {
                   ))}
                 </h1>
                 <Button
-                  className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 text-lg animate-fade-in-up animation-delay-400"
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 sm:px-6 md:px-8 py-2 sm:py-3 text-sm sm:text-base md:text-lg animate-fade-in-up animation-delay-400 w-full sm:w-auto"
                   onClick={() => handleButtonClick(slide.id)}
                 >
                   {slide.buttonText}
@@ -292,12 +361,12 @@ export default function HomePage() {
         ))}
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
+        <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 sm:space-x-3">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
                   ? "bg-red-500 scale-125"
                   : "bg-white/30 hover:bg-white/50"
@@ -361,7 +430,7 @@ export default function HomePage() {
       {/* Services */}
       <section id="services" className="py-20 bg-neutral-900 text-white">
         <div className="container mx-auto px-8 md:px-16">
-          <div className="flex justify-between items-center mb-12">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12 gap-6">
             <div>
               <h2 className="text-4xl lg:text-5xl font-bold mb-4">
                 FULL RANGE REPAIR
@@ -369,14 +438,13 @@ export default function HomePage() {
                 SERVICES
               </h2>
             </div>
-            <div className="text-right">
-              <p className="text-lg mb-4">
-                We are committed to customer satisfaction by
-              </p>
+            <div className="lg:text-right">
               <p className="text-lg mb-6">
-                providing reliable and high quality service
+                We are committed to customer satisfaction
+                <br className="hidden sm:block" />
+                by providing reliable and high quality service
               </p>
-              {/* <Button className="bg-orange-500 hover:bg-orange-600">
+              {/* <Button className="bg-red-500 hover:bg-orange-600">
                 BOOK ONLINE
               </Button> */}
             </div>
