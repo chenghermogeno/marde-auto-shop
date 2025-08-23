@@ -33,9 +33,10 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
-import { ChevronUp } from "lucide-react";
+import { Menu, X, ChevronUp } from "lucide-react";
 
 export default function HomePage() {
+  const [isOpen, setIsOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [aboutInView, setAboutInView] = useState(false);
@@ -196,23 +197,20 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-neutral-950">
       {/* Header */}
-      <header className="bg-neutral-950 text-white shadow-lg">
+      <header className="fixed top-0 left-0 w-full z-50 bg-neutral-950/95 backdrop-blur-md shadow-md">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between py-4">
+          <div className="flex items-center justify-between py-3 md:py-4">
+            {/* Logo */}
             <div className="flex items-center space-x-2">
-              <div className=" rounded-full flex items-center justify-center">
-                <img
-                  src="/marde-white-logo.png"
-                  alt="Marde’s Auto & Heavy Equipment Repair Logo"
-                  className="w-80 h-8 object-contain"
-                />
-              </div>
-              {/* <span className="text-sm font-medium italic text-white">
-                Marde’s Truck & Auto Hydraulic Repair
-              </span> */}
+              <img
+                src="/marde-white-logo.png"
+                alt="Marde’s Auto & Heavy Equipment Repair Logo"
+                className="h-10 w-auto object-contain"
+              />
             </div>
 
-            <nav className="hidden md:flex items-center space-x-8">
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-8 text-white">
               <Link href="#" className="hover:text-red-500 transition-colors">
                 Home
               </Link>
@@ -236,19 +234,65 @@ export default function HomePage() {
               </Link>
             </nav>
 
-            <div className="flex items-center space-x-4">
-              <div className="hidden lg:flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-red-500" />
-
-                <span className="font-bold">+ (639) 945-385-0036</span>
-              </div>
+            {/* Contact (Desktop) */}
+            <div className="hidden lg:flex items-center space-x-2 text-white">
+              <Phone className="w-4 h-4 text-red-500" />
+              <span className="font-bold">+63 945 385 0036</span>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-white"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <nav className="md:hidden bg-neutral-900 text-white px-6 py-4 space-y-4 border-t border-neutral-800">
+            <Link
+              href="#"
+              className="block hover:text-red-500 transition"
+              onClick={() => setIsOpen(false)}
+            >
+              Home
+            </Link>
+            <Link
+              href="#about"
+              className="block hover:text-red-500 transition"
+              onClick={() => setIsOpen(false)}
+            >
+              About Us
+            </Link>
+            <Link
+              href="#services"
+              className="block hover:text-red-500 transition"
+              onClick={() => setIsOpen(false)}
+            >
+              Services
+            </Link>
+            <Link
+              href="#contact"
+              className="block hover:text-red-500 transition"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact Us
+            </Link>
+
+            {/* Contact (Mobile) */}
+            <div className="flex items-center space-x-2 pt-4 border-t border-neutral-800">
+              <Phone className="w-4 h-4 text-red-500" />
+              <span className="font-bold">+63 945 385 0036</span>
+            </div>
+          </nav>
+        )}
       </header>
 
       {/* Hero Carousel Section */}
-      <section className="relative min-h-[50vh] md:min-h-screen bg-gray-900 text-white overflow-hidden">
+      <section className="relative min-h-[60vh] md:min-h-screen bg-gray-900 text-white overflow-hidden">
         {/* Slides */}
         {slides.map((slide, index) => (
           <div
@@ -269,7 +313,7 @@ export default function HomePage() {
             {/* Overlay for text visibility */}
             <div className="absolute left-0 top-0 h-full w-2/5 md:w-1/2 bg-gradient-to-r from-black/80 via-black/60 to-transparent z-10 pointer-events-none" />
 
-            <div className="relative container mx-auto px-8 md:px-16 py-12 md:py-20 lg:py-32 h-full flex items-center z-20">
+            <div className="relative container mt-8 mx-auto px-8 md:px-16 py-8 md:py-20 lg:py-32 h-full flex items-center z-20">
               <div className="max-w-2xl">
                 <p className="text-red-400 font-medium mb-4 animate-fade-in-up">
                   {slide.subtitle}
@@ -363,24 +407,23 @@ export default function HomePage() {
       {/* Services */}
       <section id="services" className="py-20 bg-neutral-900 text-white">
         <div className="container mx-auto px-8 md:px-16">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-                FULL RANGE REPAIR
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-12">
+            {/* Left (Heading) */}
+            <div className="md:w-1/2">
+              <h2 className="text-4xl lg:text-5xl font-bold mb-4 md:mb-0">
+                FULL RANGE
                 <br />
-                SERVICES
+                REPAIR SERVICES
               </h2>
             </div>
-            <div className="text-right">
-              <p className="text-lg mb-4">
-                We are committed to customer satisfaction by
+
+            {/* Right (Paragraph) */}
+            <div className="md:w-1/2 md:text-right">
+              <p className="text-lg mb-4 md:mb-0 leading-snug">
+                We are committed to customer satisfaction
+                <br className="hidden md:block" />
+                by providing reliable and high quality service
               </p>
-              <p className="text-lg mb-6">
-                providing reliable and high quality service
-              </p>
-              {/* <Button className="bg-orange-500 hover:bg-orange-600">
-                BOOK ONLINE
-              </Button> */}
             </div>
           </div>
 
@@ -579,8 +622,8 @@ export default function HomePage() {
                   style={{ transitionDelay: "600ms" }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center shadow-md">
-                      <Settings className="w-6 h-6 text-red-500" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center shadow-md flex-shrink-0">
+                      <Settings className="w-5 h-5 md:w-6 md:h-6 text-red-500" />
                     </div>
                     <div>
                       <h4 className="font-bold text-lg mb-2">
@@ -603,8 +646,8 @@ export default function HomePage() {
                   style={{ transitionDelay: "800ms" }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                      <Wrench className="w-6 h-6 text-red-500" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-orange-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Wrench className="w-5 h-5 md:w-6 md:h-6 text-red-500" />
                     </div>
                     <div>
                       <h4 className="font-bold text-lg mb-2">
@@ -627,8 +670,8 @@ export default function HomePage() {
                   style={{ transitionDelay: "1200ms" }}
                 >
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center shadow-md">
-                      <Clock className="w-6 h-6 text-red-500" />
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg flex items-center justify-center shadow-md flex-shrink-0">
+                      <Clock className="w-5 h-5 md:w-6 md:h-6 text-red-500" />
                     </div>
                     <div>
                       <h4 className="font-bold text-lg mb-2">
